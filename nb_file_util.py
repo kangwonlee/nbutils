@@ -4,8 +4,8 @@ import subprocess
 import nbformat
 
 
-ignore_path_list = {'__pycache__', '.ipynb_checkpoints', '.git', '.cache', '.idea', 
-                    'nbutils', 'tests'}
+ignore_path_list = {'__pycache__', '.ipynb_checkpoints', '.git', '.cache', '.idea',
+                    'nbutils', 'tests',  '.vscode',}
 
 
 def is_ignore(path):
