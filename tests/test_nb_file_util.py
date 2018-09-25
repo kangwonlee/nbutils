@@ -44,6 +44,11 @@ class TestNotebookFileUtil(unittest.TestCase):
         for file_name in other_set:
             self.assertFalse(nbutils.is_ipynb(file_name), msg=f"arg = {file_name}")
 
+    def test_gen_ipynb(self):
+        result = tuple(nbutils.gen_ipynb(os.path.split(os.path.split(__file__)[0])[0]))
+        self.assertFalse(result)
+        # To test, need a tree with expectable result
+
 
 if __name__ == '__main__':
     unittest.main()
