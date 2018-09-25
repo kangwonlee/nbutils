@@ -35,6 +35,19 @@ def os_walk_if_not_ignore(root):
             yield root_name, dir_list, filename_list
 
 
+def gen_ipynb(root):
+    """
+    Generate ipynb files within each chapter
+    root(==parent folder of chapter folders) -> chapter_path, ipynb_filename
+    """
+    # Chapter folder
+    for chapter_path, _, filename_list in os_walk_if_not_ignore(root):
+
+        # Notebook file loop
+        for ipynb_filename in filter(is_ipynb, filename_list):
+            yield chapter_path, ipynb_filename
+
+
 class FileProcessor(object):
     """
     Interface to jupyter notebook file
