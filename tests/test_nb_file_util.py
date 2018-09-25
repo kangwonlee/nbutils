@@ -24,6 +24,15 @@ class TestNotebookFileUtil(unittest.TestCase):
         self.assertIn('nbformat', result)
         self.assertIn('nbformat_minor', result)
 
+    def test_is_ignore(self):
+        ignore_these = ('__pycache__', '.ipynb_checkpoints', '.git', '.cache', '.idea', 'nbutils', 'tests', '.vscode')
+        for ig in ignore_these:
+            self.assertTrue(nbutils.is_ignore(ig), msg=f"arg = {ig}")
+
+        do_not_ignore_these = ('01', '02', 'ch02', )
+        for dont_ig in do_not_ignore_these:
+            self.assertFalse(nbutils.is_ignore(dont_ig), msg=f"arg = {dont_ig}")
+
 
 if __name__ == '__main__':
     unittest.main()
