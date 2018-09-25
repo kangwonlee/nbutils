@@ -4,6 +4,22 @@ import subprocess
 import nbformat
 
 
+ignore_path_list = {'__pycache__', '.ipynb_checkpoints', '.git', '.cache', '.idea', 
+                    'nbutils', 'tests'}
+
+
+def is_ignore(path):
+    result = False
+    
+    path_split_set = set(os.path.split(path))
+    for ignore in ignore_path_list:
+        if ignore in path_split_set:
+            result= True
+            break
+
+    return result
+
+
 class FileProcessor(object):
     """
     Interface to jupyter notebook file
