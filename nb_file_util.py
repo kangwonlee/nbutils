@@ -24,6 +24,17 @@ def is_ipynb(path):
     return '.ipynb' == os.path.splitext(path)[-1]
 
 
+def os_walk_if_not_ignore(root):
+    """
+    Run an os.walk() loop and yield if not is_ignore()
+
+    root : a path string to a folder
+    """
+    for root_name, dir_list, filename_list in os.walk(root):
+        if not is_ignore(root_name):
+            yield root_name, dir_list, filename_list
+
+
 class FileProcessor(object):
     """
     Interface to jupyter notebook file
