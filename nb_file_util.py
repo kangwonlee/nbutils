@@ -10,7 +10,7 @@ ignore_path_list = {'__pycache__', '.ipynb_checkpoints', '.git', '.cache', '.ide
 
 def is_ignore(path):
     result = False
-    
+
     path_split_set = set(os.path.split(path))
     for ignore in ignore_path_list:
         if ignore in path_split_set:
@@ -18,6 +18,10 @@ def is_ignore(path):
             break
 
     return result
+
+
+def is_ipynb(path):
+    return '.ipynb' == os.path.splitext(path)[-1]
 
 
 class FileProcessor(object):
