@@ -13,6 +13,7 @@ Examples
 
 import os
 import sys
+import typing
 
 import nbformat
 
@@ -45,11 +46,9 @@ def gen_files(path, ext='ipynb'):
                 yield item
 
 
-def gen_ipynb_files_above(path=None, ext='ipynb'):
+def gen_ipynb_files_above(path: typing.Union[str, os.PathLike]=None, ext:str='ipynb'):
     if path is None:
         path = get_par_dir()
-
-    assert isinstance(path, (str, os.PathLike))
 
     for folder in gen_folders(path):
         for file in gen_files(folder, ext):
