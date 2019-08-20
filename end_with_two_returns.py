@@ -91,7 +91,13 @@ def process_file(input_ipynb_filename, output_ipynb_filename=None):
     for cell in nb['cells']:
         process_cell(cell)
 
-    nb['cells'][-1].source = ""
+    # https://stackoverflow.com/questions/38193878/how-to-create-modify-a-jupyter-notebook-from-code-python/45672031#45672031
+    if nb['cells'][-1].source.strip():
+        nb['cells'].append(nbformat.v4.new_code_cell(""))
+    elif "" == nb['cells'][-1].source.strip():
+        nb['cells'][-1].source = ""
+    else:
+        raise NotImplementedError
 
     nbformat.write(nb, output_ipynb_filename)
 
