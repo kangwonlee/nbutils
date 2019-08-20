@@ -49,7 +49,7 @@ def gen_ipynb_files_above(path=None, ext='ipynb'):
     if path is None:
         path = get_par_dir()
 
-    assert isinstance(path, os.PathLike)
+    assert isinstance(path, (str, os.PathLike))
 
     for folder in gen_folders(path):
         for file in gen_files(folder, ext):
