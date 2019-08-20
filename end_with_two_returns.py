@@ -62,8 +62,7 @@ def gen_cells(ipynb_file):
         yield cell
 
 
-def get_source_from_cell(cell):
-    assert isinstance(cell, nbformat.notebooknode.NotebookNode), repr(cell)
+def get_source_from_cell(cell: nbformat.notebooknode.NotebookNode):
     return cell['source']
 
 
