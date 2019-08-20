@@ -1,3 +1,16 @@
+"""
+Add two new lines at the end of all cells of ipynb files
+Starting from the parent folder, visit all top evel folders
+Convert all .ipynb files
+
+========
+Examples
+========
+
+% python end_with_two_returns.py
+
+"""
+
 import os
 
 import nbformat
