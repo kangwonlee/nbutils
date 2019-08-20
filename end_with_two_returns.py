@@ -12,6 +12,7 @@ Examples
 """
 
 import os
+import sys
 
 import nbformat
 
@@ -44,7 +45,12 @@ def gen_files(path, ext='ipynb'):
                 yield item
 
 
-def gen_ipynb_files_above(path=get_par_dir(), ext='ipynb'):
+def gen_ipynb_files_above(path=None, ext='ipynb'):
+    if path is None:
+        path = get_par_dir()
+
+    assert isinstance(path, os.PathLike)
+
     for folder in gen_folders(path):
         for file in gen_files(folder, ext):
             yield file
@@ -102,12 +108,15 @@ def process_file(input_ipynb_filename, output_ipynb_filename=None):
     nbformat.write(nb, output_ipynb_filename)
 
 
-def main():
-    for ipynb_file in gen_ipynb_files_above():
+def main(argv):
+    if not argv:
+        argv = [get_par_dir()]
+
+    for ipynb_file in gen_ipynb_files_above(argv[0]):
         print(f'processing {ipynb_file}', end=' ')
         process_file(ipynb_file)
         print('done')
 
 
 if "__main__" == __name__:
-    main()
+    main(sys.argv[1:])
